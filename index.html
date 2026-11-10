@@ -577,6 +577,7 @@
                 showToast('No hay datos para exportar', 'warning');
                 return;
             }
+            let csvContent = "\uFEFFsep=,\n";
 
             const headers = ["ID Lead", "Promotora", "Zona", "Cliente", "Telefono", "Producto", "Estado Credito", "Notas", "Fecha Registro"];
             
