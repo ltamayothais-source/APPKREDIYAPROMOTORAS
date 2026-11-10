@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KrediYA Panamá - Seguimiento de Clientes</title>
+    <title>KrediYA - Gestión de Promotoras</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -17,13 +17,10 @@
                     colors: {
                         krediya: {
                             blue: '#0052CC',
-                            darkBlue: '#003D99',
-                            lightBlue: '#E6F0FF',
+                            darkBlue: '#003996',
                             red: '#FF0055',
-                            darkRed: '#D60047',
-                            lightRed: '#FFE6ED',
-                            bg: '#F8FAFC',
-                            slate: '#0F172A'
+                            accentRed: '#E6004C',
+                            bgGray: '#F8FAFC'
                         }
                     },
                     fontFamily: {
@@ -38,61 +35,59 @@
             font-family: 'Inter', sans-serif;
             background-color: #F8FAFC;
         }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #E2E8F0;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-12">
+<body class="text-slate-800 antialiased min-h-screen pb-12">
 
-    <!-- HEADER / BRANDING OFICIAL -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm px-4 py-3.5">
-        <div class="max-w-3xl mx-auto flex items-center justify-between">
-            <!-- LOGO OFICIAL SVG KREDIYA PANAMA -->
-            <div class="flex items-center space-x-3">
-                <div class="flex flex-col items-start select-none">
-                    <svg width="155" height="42" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto">
-                        <!-- Panamá Subtitle -->
-                        <text x="5" y="16" fill="#0052CC" font-family="'Inter', sans-serif" font-size="15" font-weight="700" letter-spacing="-0.3">Panamá</text>
-                        <!-- Kredi -->
-                        <text x="2" y="52" fill="#0052CC" font-family="'Inter', sans-serif" font-size="44" font-weight="800" letter-spacing="-1">Kredi</text>
-                        <!-- YA -->
-                        <text x="122" y="52" fill="#FF0055" font-family="'Inter', sans-serif" font-size="46" font-weight="900" letter-spacing="-1">Y</text>
-                        <!-- Custom Stylized 'A' with Swoosh -->
-                        <path d="M 172 52 L 186 16 L 200 52 L 189 52 L 186 43 L 176 43 L 172 52 Z M 181 28 L 178 36 L 184 36 Z" fill="#FF0055" />
-                        <!-- Swoosh/Spark on A -->
-                        <path d="M 165 37 C 175 33, 195 31, 212 28 C 198 33, 180 37, 165 37 Z" fill="#FF0055" />
-                    </svg>
-                </div>
-                <div class="hidden sm:block border-l border-slate-200 pl-3">
-                    <h1 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-none">Gestión Promotoras</h1>
-                    <p class="text-xs font-semibold text-slate-700 mt-0.5">Seguimiento de Clientes</p>
-                </div>
+    <!-- Header Principal con Logo Oficial -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logotipo SVG KrediYA Panamá -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-9 w-auto" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="10" y="22" font-family="'Inter', sans-serif" font-weight="600" font-size="18" fill="#0052CC">Panamá</text>
+                    <text x="10" y="60" font-family="'Inter', sans-serif" font-weight="800" font-size="40" fill="#0052CC">Kredi</text>
+                    <text x="118" y="60" font-family="'Inter', sans-serif" font-weight="800" font-size="40" fill="#FF0055">YA</text>
+                    <path d="M185 22 L205 22 L175 60 L195 60" stroke="#FF0055" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
             
-            <!-- Quick Action Info / Export CSV -->
-            <button onclick="exportToCSV()" title="Exportar reporte CSV" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-xl transition-all flex items-center text-xs font-semibold space-x-2 active:scale-95">
-                <i class="fa-solid fa-file-csv text-emerald-600 text-base"></i>
-                <span class="hidden sm:inline font-bold">Exportar CSV</span>
-            </button>
+            <div class="text-right">
+                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">Gestión Promotoras</span>
+                <span class="text-xs font-bold text-krediya-blue">Seguimiento de Clientes</span>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-3xl mx-auto px-4 pt-5 w-full flex-1">
+    <!-- Contenedor Aplicación Mobile-First -->
+    <main class="max-w-md mx-auto px-4 pt-4 space-y-4">
 
-        <!-- ZONA & ESTADO FILTERS CARD -->
-        <div class="bg-white border border-slate-200/80 rounded-2xl p-4 mb-5 shadow-sm">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Barra de Acción y Exportación -->
+        <div class="flex items-center justify-between gap-2">
+            <button onclick="openModal()" class="flex-1 bg-krediya-red hover:bg-krediya-accentRed text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-red-200 flex items-center justify-center space-x-2 transition active:scale-95">
+                <i class="fa-solid fa-user-plus text-sm"></i>
+                <span>Nuevo Cliente</span>
+            </button>
+            
+            <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md shadow-emerald-100 flex items-center justify-center space-x-2 transition active:scale-95">
+                <i class="fa-solid fa-file-excel text-base"></i>
+                <span class="text-xs">Exportar CSV</span>
+            </button>
+        </div>
+
+        <!-- Filtros de Zonas y Estado -->
+        <div class="glass-card rounded-2xl p-4 space-y-3">
+            <div class="grid grid-cols-2 gap-2">
                 <div>
-                    <label for="zoneSelector" class="block text-[11px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">
-                        <i class="fa-solid fa-location-dot text-krediya-red mr-1"></i> Zona de Cobertura
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                        <i class="fa-solid fa-location-dot text-krediya-red mr-1"></i>Zona
                     </label>
-                    <select id="zoneSelector" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 text-slate-800 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all cursor-pointer">
+                    <select id="filterZone" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-krediya-blue">
                         <option value="TODAS">TODAS LAS ZONAS</option>
                         <option value="CHITRE">CHITRÉ</option>
                         <option value="SANTIAGO">SANTIAGO</option>
@@ -102,542 +97,412 @@
                     </select>
                 </div>
                 <div>
-                    <label for="statusFilter" class="block text-[11px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">
-                        <i class="fa-solid fa-filter text-krediya-blue mr-1"></i> Estado del Crédito
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                        <i class="fa-solid fa-filter text-krediya-blue mr-1"></i>Estado Crédito
                     </label>
-                    <select id="statusFilter" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 text-slate-800 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all cursor-pointer">
+                    <select id="filterStatus" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-krediya-blue">
                         <option value="TODOS">TODOS LOS ESTADOS</option>
-                        <option value="Pendiente">PENDIENTE DE DOCUMENTOS</option>
-                        <option value="En Seguimiento">EN SEGUIMIENTO</option>
-                        <option value="Requiere Pie">REQUIERE INICIAL / PIE</option>
-                        <option value="Aprobado">APROBADO / COMPLETADO</option>
-                        <option value="Rechazado">RECHAZADO</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Requiere Inicial">Requiere Inicial</option>
+                        <option value="Aprobado">Aprobado</option>
+                        <option value="Rechazado">Rechazado</option>
                     </select>
                 </div>
             </div>
-        </div>
 
-        <!-- DASHBOARD METRICS -->
-        <div class="grid grid-cols-3 gap-3 mb-6">
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-3.5 text-center shadow-sm">
-                <span class="block text-2xl sm:text-3xl font-black text-krediya-blue" id="metricTotal">0</span>
-                <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-tight">Total Leads</span>
-            </div>
-            <div class="bg-amber-50/70 border border-amber-200/70 rounded-2xl p-3.5 text-center shadow-sm">
-                <span class="block text-2xl sm:text-3xl font-black text-amber-600" id="metricPending">0</span>
-                <span class="text-[10px] sm:text-[11px] font-bold text-amber-700/80 uppercase tracking-tight">Pendientes</span>
-            </div>
-            <div class="bg-emerald-50/70 border border-emerald-200/70 rounded-2xl p-3.5 text-center shadow-sm">
-                <span class="block text-2xl sm:text-3xl font-black text-emerald-600" id="metricCompleted">0</span>
-                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700/80 uppercase tracking-tight">Aprobados</span>
+            <!-- Búsqueda por texto -->
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                <input type="text" id="searchInput" onkeyup="filterLeads()" placeholder="Buscar por cliente, cédula o promotora..." class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 text-xs font-medium text-slate-700 focus:outline-none focus:border-krediya-blue">
             </div>
         </div>
 
-        <!-- ACTION BAR -->
-        <div class="flex justify-between items-center mb-3.5">
-            <div>
-                <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center">
-                    <i class="fa-solid fa-users text-krediya-blue mr-2"></i> Prospectos Capturados
+        <!-- Dashboard / Métricas Rápidas -->
+        <div class="grid grid-cols-3 gap-2">
+            <div class="bg-white border border-slate-200 rounded-xl p-3 text-center shadow-sm">
+                <span id="metricTotal" class="block text-xl font-black text-slate-800">0</span>
+                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Total Leads</span>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center shadow-sm">
+                <span id="metricPending" class="block text-xl font-black text-amber-600">0</span>
+                <span class="text-[9px] font-bold text-amber-600 uppercase tracking-wider">Pendientes</span>
+            </div>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center shadow-sm">
+                <span id="metricApproved" class="block text-xl font-black text-emerald-600">0</span>
+                <span class="text-[9px] font-bold text-emerald-600 uppercase tracking-wider">Aprobados</span>
+            </div>
+        </div>
+
+        <!-- Lista de Prospectos Capturados -->
+        <div class="space-y-3">
+            <div class="flex items-center justify-between px-1">
+                <h2 class="text-sm font-extrabold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-users text-krediya-blue"></i> Prospectos Capturados
                 </h2>
+                <span id="leadCountBadge" class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full">0</span>
             </div>
-            <button onclick="openFormModal()" class="bg-krediya-red hover:bg-krediya-darkRed text-white px-4 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center space-x-2 active:scale-95">
-                <i class="fa-solid fa-user-plus text-xs"></i>
-                <span>Nuevo Cliente</span>
-            </button>
-        </div>
 
-        <!-- SEARCH INPUT -->
-        <div class="relative mb-4">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
-            <input type="text" id="searchInput" onkeyup="filterLeads()" placeholder="Buscar por cliente, teléfono o promotora..." class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all shadow-sm">
-        </div>
-
-        <!-- LEADS CARDS LIST CONTAINER -->
-        <div id="leadsListContainer" class="space-y-3.5">
-            <!-- Dynamic Content generated by JS -->
-        </div>
-
-        <!-- EMPTY STATE -->
-        <div id="emptyState" class="hidden text-center py-12 px-4 bg-white border border-dashed border-slate-200 rounded-2xl mt-4 shadow-sm">
-            <div class="w-14 h-14 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
-                <i class="fa-solid fa-address-book"></i>
+            <div id="leadsList" class="space-y-3">
+                <!-- Tarjetas dinámicas generadas por JS -->
             </div>
-            <h3 class="text-slate-800 font-bold text-base">No hay clientes registrados</h3>
-            <p class="text-slate-400 text-xs mt-1 max-w-xs mx-auto">Haz clic en el botón "Nuevo Cliente" para añadir una nueva solicitud.</p>
         </div>
 
     </main>
 
-    <!-- FORM MODAL (ADD / EDIT LEAD) -->
-    <div id="leadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
-        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 relative animate-in fade-in zoom-in duration-150">
-            
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center pb-4 border-b border-slate-100 mb-4">
-                <div>
-                    <h3 id="modalTitle" class="text-lg font-bold text-slate-900">Registrar Nuevo Cliente</h3>
-                    <p class="text-xs text-slate-500">Ingresa la información del prospecto para el seguimiento de venta.</p>
-                </div>
-                <button onclick="closeFormModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+    <!-- Modal Formulario Agregar / Editar Cliente -->
+    <div id="leadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="bg-krediya-blue p-4 text-white flex justify-between items-center">
+                <h3 id="modalTitle" class="font-bold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus"></i> Capturar Nuevo Prospecto
+                </h3>
+                <button onclick="closeModal()" class="text-white/80 hover:text-white p-1">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
-            <!-- Form -->
-            <form id="leadForm" onsubmit="saveLead(event)" class="space-y-4">
+            <form id="leadForm" onsubmit="saveLead(event)" class="p-4 space-y-3">
                 <input type="hidden" id="leadId">
 
-                <!-- Promotora / ID -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre / ID Promotora *</label>
-                    <input type="text" id="promoterName" required placeholder="Ej. Maria Gómez (ID 402)" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
-                </div>
-
-                <!-- Zona de Gestión -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Zona Asignada *</label>
-                    <select id="formZone" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
-                        <option value="CHITRE">CHITRÉ</option>
-                        <option value="SANTIAGO">SANTIAGO</option>
-                        <option value="CHIRIQUI">CHIRIQUÍ</option>
-                        <option value="PENONOME">PENONOMÉ</option>
-                        <option value="OESTE">PANAMÁ OESTE</option>
-                    </select>
-                </div>
-
-                <!-- Nombre Cliente -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo del Cliente *</label>
-                    <input type="text" id="customerName" required placeholder="Ej. Carlos Eduardo Rodríguez" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
-                </div>
-
-                <!-- Teléfono (WhatsApp) -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono (WhatsApp) *</label>
-                    <div class="relative">
-                        <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm font-semibold">+507</span>
-                        <input type="tel" id="customerPhone" required placeholder="6000-0000" class="w-full border border-slate-300 rounded-xl pl-16 pr-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Promotora *</label>
+                        <input type="text" id="promoterName" required placeholder="Nombre Promotora" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Zona *</label>
+                        <select id="zone" required class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                            <option value="CHITRE">CHITRÉ</option>
+                            <option value="SANTIAGO">SANTIAGO</option>
+                            <option value="CHIRIQUI">CHIRIQUÍ</option>
+                            <option value="PENONOME">PENONOMÉ</option>
+                            <option value="OESTE">PANAMÁ OESTE</option>
+                        </select>
                     </div>
                 </div>
 
-                <!-- Producto de Interés -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Producto de Interés *</label>
-                    <select id="productInterest" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
-                        <option value="Celular / Smartphone">Smartphone / Celular</option>
-                        <option value="Electródoméstico / TV">Electrodoméstico / TV</option>
-                        <option value="Moto / Movilidad">Moto / Movilidad</option>
-                        <option value="Préstamo Personal">Préstamo Personal</option>
-                        <option value="Otro Producto">Otro Producto</option>
-                    </select>
+                    <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Nombre Completo Cliente *</label>
+                    <input type="text" id="clientName" required placeholder="Ej. Juan Pérez" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
                 </div>
 
-                <!-- Estado del Crédito -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Estado de la Solicitud *</label>
-                    <select id="creditStatus" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
-                        <option value="Pendiente">Pendiente de Documentos</option>
-                        <option value="En Seguimiento">En Seguimiento</option>
-                        <option value="Requiere Pie">Requiere Inicial / Pie</option>
-                        <option value="Aprobado">Aprobado / Completado</option>
-                        <option value="Rechazado">Rechazado</option>
-                    </select>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Cédula *</label>
+                        <input type="text" id="clientCedula" required placeholder="8-888-8888" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="clientPhone" required placeholder="60000000" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                    </div>
                 </div>
 
-                <!-- Notas Adicionales -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Observaciones / Notas</label>
-                    <textarea id="notes" rows="2" placeholder="Detalles de contacto, fecha de cita o comentarios..." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all"></textarea>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Producto Interés</label>
+                        <select id="productInterest" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                            <option value="Smartphone / Celular">Smartphone / Celular</option>
+                            <option value="Moto / Movilidad">Moto / Movilidad</option>
+                            <option value="Electródoméstico / TV">Electródoméstico / TV</option>
+                            <option value="Préstamo Efectivo">Préstamo Efectivo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Estado Crédito</label>
+                        <select id="creditStatus" class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none">
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Requiere Inicial">Requiere Inicial</option>
+                            <option value="Aprobado">Aprobado</option>
+                            <option value="Rechazado">Rechazado</option>
+                        </select>
+                    </div>
                 </div>
 
-                <!-- Submit Buttons -->
-                <div class="pt-2 flex space-x-3">
-                    <button type="button" onclick="closeFormModal()" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl text-sm transition-all">
-                        Cancelar
-                    </button>
-                    <button type="submit" class="w-1/2 bg-krediya-blue hover:bg-krediya-darkBlue text-white font-bold py-3 rounded-xl text-sm shadow-md transition-all">
-                        Guardar Cliente
-                    </button>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Notas / Observaciones</label>
+                    <textarea id="notes" rows="2" placeholder="Detalles de la gestión..." class="w-full border border-slate-300 rounded-lg p-2 text-xs font-medium focus:border-krediya-blue focus:outline-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="closeModal()" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs">Cancelar</button>
+                    <button type="submit" class="w-1/2 bg-krediya-blue hover:bg-krediya-darkBlue text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-blue-200">Guardar Lead</button>
                 </div>
             </form>
-
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center space-x-3 transition-all duration-300 transform translate-y-20 opacity-0 z-50 pointer-events-none">
-        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-        <span id="toastMessage" class="text-xs font-medium">Operación realizada con éxito</span>
-    </div>
+    <!-- Toast de Notificaciones -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs px-4 py-2 rounded-xl shadow-xl hidden z-50"></div>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Storage Key
-        const STORAGE_KEY = 'krediya_promoter_leads_v2';
-
-        // Initial Seed Data if empty
-        const initialSeedLeads = [
+        // Datos Iniciales de Demostración
+        const initialLeads = [
             {
-                id: '1690000000001',
-                promoterName: 'Ana López (ID 102)',
-                zone: 'CHITRE',
-                customerName: 'Juan Pérez',
-                customerPhone: '65432109',
-                productInterest: 'Celular / Smartphone',
-                creditStatus: 'Pendiente',
-                notes: 'Pendiente enviarme foto de la cédula por WhatsApp.',
-                createdAt: '2026-11-08'
+                id: "101",
+                promoterName: "Ana López",
+                zone: "CHITRE",
+                clientName: "Juan Pérez",
+                clientCedula: "6-701-1234",
+                clientPhone: "65551234",
+                productInterest: "Smartphone / Celular",
+                creditStatus: "Pendiente",
+                notes: "Pendiente enviarme foto de la cédula por WhatsApp.",
+                createdAt: "2026-11-08"
             },
             {
-                id: '1690000000002',
-                promoterName: 'Laura Martínez',
-                zone: 'SANTIAGO',
-                customerName: 'Ariel Santamaría',
-                customerPhone: '67890123',
-                productInterest: 'Moto / Movilidad',
-                creditStatus: 'Requiere Pie',
-                notes: 'Le faltan $50 para completar la inicial.',
-                createdAt: '2026-11-09'
+                id: "102",
+                promoterName: "Laura Martínez",
+                zone: "SANTIAGO",
+                clientName: "Ariel Santamaría",
+                clientCedula: "9-720-4567",
+                clientPhone: "67778899",
+                productInterest: "Moto / Movilidad",
+                creditStatus: "Requiere Inicial",
+                notes: "Le faltan $50 para completar la inicial.",
+                createdAt: "2026-11-09"
             },
             {
-                id: '1690000000003',
-                promoterName: 'Sofia Castillo',
-                zone: 'CHIRIQUI',
-                customerName: 'Elena Rios',
-                customerPhone: '62223344',
-                productInterest: 'Electródoméstico / TV',
-                creditStatus: 'Aprobado',
-                notes: 'Aprobado $600. Pasa a retirar mañana.',
-                createdAt: '2026-11-10'
+                id: "103",
+                promoterName: "María Rodríguez",
+                zone: "CHIRIQUI",
+                clientName: "Elena Ríos",
+                clientCedula: "4-750-9876",
+                clientPhone: "62223344",
+                productInterest: "Electródoméstico / TV",
+                creditStatus: "Aprobado",
+                notes: "Aprobado listo para retiro de equipo.",
+                createdAt: "2026-11-10"
             }
         ];
 
-        // State Variable
         let leads = [];
 
-        // App Initialization
-        window.onload = function() {
-            loadLeads();
-            renderLeads();
-        };
-
-        // Load leads from LocalStorage
-        function loadLeads() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            if (data) {
-                try {
-                    leads = JSON.parse(data);
-                } catch (e) {
-                    leads = [...initialSeedLeads];
-                }
+        // Inicialización de la aplicación
+        document.addEventListener('DOMContentLoaded', () => {
+            const stored = localStorage.getItem('krediya_leads_db');
+            if (stored) {
+                leads = JSON.parse(stored);
             } else {
-                leads = [...initialSeedLeads];
+                leads = initialLeads;
                 saveToLocalStorage();
             }
-        }
+            renderLeads();
+        });
 
-        // Save to LocalStorage
         function saveToLocalStorage() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+            localStorage.setItem('krediya_leads_db', JSON.stringify(leads));
         }
 
-        // Render Leads List and Metrics
-        function renderLeads() {
-            const container = document.getElementById('leadsListContainer');
-            const emptyState = document.getElementById('emptyState');
+        function renderLeads(filteredData = null) {
+            const listContainer = document.getElementById('leadsList');
+            const data = filteredData || leads;
             
-            const selectedZone = document.getElementById('zoneSelector').value;
-            const selectedStatus = document.getElementById('statusFilter').value;
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            listContainer.innerHTML = '';
+            document.getElementById('leadCountBadge').innerText = data.length;
 
-            // Filtering
-            const filtered = leads.filter(lead => {
-                const matchZone = (selectedZone === 'TODAS' || lead.zone === selectedZone);
-                const matchStatus = (selectedStatus === 'TODOS' || lead.creditStatus === selectedStatus);
-                const matchSearch = lead.customerName.toLowerCase().includes(searchQuery) ||
-                                    lead.customerPhone.includes(searchQuery) ||
-                                    lead.promoterName.toLowerCase().includes(searchQuery);
-
-                return matchZone && matchStatus && matchSearch;
-            });
-
-            // Update Metrics
             updateMetrics();
 
-            // Handle Empty
-            if (filtered.length === 0) {
-                container.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            } else {
-                emptyState.classList.add('hidden');
-            }
-
-            // Generate Cards
-            container.innerHTML = filtered.map(lead => {
-                const statusBadge = getStatusBadgeHTML(lead.creditStatus);
-                const cleanPhone = lead.customerPhone.replace(/\D/g, '');
-                const waMessage = encodeURIComponent(`Hola ${lead.customerName}, le saludamos de KrediYA Panamá respecto a su solicitud de ${lead.productInterest}.`);
-                const waURL = `https://wa.me/507${cleanPhone}?text=${waMessage}`;
-
-                return `
-                    <div class="bg-white border border-slate-200/90 hover:border-slate-300 rounded-2xl p-4 shadow-sm transition-all duration-200 relative">
-                        <!-- Top Row: Zone & Status -->
-                        <div class="flex justify-between items-start mb-2.5">
-                            <span class="inline-flex items-center text-[10px] font-black uppercase tracking-wider bg-krediya-lightBlue text-krediya-blue px-2.5 py-1 rounded-lg">
-                                <i class="fa-solid fa-location-dot text-krediya-red mr-1.5"></i> ${lead.zone}
-                            </span>
-                            ${statusBadge}
-                        </div>
-
-                        <!-- Customer Details -->
-                        <div class="mb-3">
-                            <h3 class="text-base font-bold text-slate-900 leading-snug">${escapeHTML(lead.customerName)}</h3>
-                            <p class="text-xs text-slate-500 font-medium mt-0.5 flex items-center">
-                                <i class="fa-solid fa-box text-slate-400 mr-1.5 text-xs"></i> ${escapeHTML(lead.productInterest)}
-                            </p>
-                        </div>
-
-                        <!-- Notes if present -->
-                        ${lead.notes ? `
-                            <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 mb-3 text-xs text-slate-600 italic">
-                                "${escapeHTML(lead.notes)}"
-                            </div>
-                        ` : ''}
-
-                        <!-- Promoter & Date info -->
-                        <div class="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100 mb-3">
-                            <span><i class="fa-solid fa-user-tag mr-1 text-slate-400"></i> ${escapeHTML(lead.promoterName)}</span>
-                            <span>${lead.createdAt || 'Reciente'}</span>
-                        </div>
-
-                        <!-- Actions Bar -->
-                        <div class="grid grid-cols-3 gap-2">
-                            <a href="${waURL}" target="_blank" class="col-span-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1.5 transition-all shadow-sm">
-                                <i class="fa-brands fa-whatsapp text-sm"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                            <button onclick="editLead('${lead.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1 transition-all">
-                                <i class="fa-solid fa-pen-to-square text-slate-500"></i>
-                                <span>Editar</span>
-                            </button>
-                            <button onclick="deleteLead('${lead.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1 transition-all">
-                                <i class="fa-solid fa-trash-can text-rose-500"></i>
-                                <span>Borrar</span>
-                            </button>
-                        </div>
+            if (data.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white border border-slate-200 rounded-xl p-8 text-center text-slate-400">
+                        <i class="fa-solid fa-folder-open text-3xl mb-2 block"></i>
+                        <p class="text-xs font-semibold">No se encontraron prospectos registrados</p>
                     </div>
                 `;
-            }).join('');
-        }
-
-        // Status Badge Styling Helper
-        function getStatusBadgeHTML(status) {
-            switch (status) {
-                case 'Pendiente':
-                    return `<span class="bg-amber-100/80 text-amber-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200/50"><i class="fa-solid fa-clock mr-1"></i>Pendiente</span>`;
-                case 'En Seguimiento':
-                    return `<span class="bg-blue-100/80 text-blue-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-blue-200/50"><i class="fa-solid fa-arrows-rotate mr-1"></i>En Seguimiento</span>`;
-                case 'Requiere Pie':
-                    return `<span class="bg-purple-100/80 text-purple-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-purple-200/50"><i class="fa-solid fa-hand-holding-dollar mr-1"></i>Requiere Inicial</span>`;
-                case 'Aprobado':
-                    return `<span class="bg-emerald-100/80 text-emerald-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-200/50"><i class="fa-solid fa-circle-check mr-1"></i>Aprobado</span>`;
-                case 'Rechazado':
-                    return `<span class="bg-rose-100/80 text-rose-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-rose-200/50"><i class="fa-solid fa-circle-xmark mr-1"></i>Rechazado</span>`;
-                default:
-                    return `<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${status}</span>`;
+                return;
             }
+
+            data.forEach(lead => {
+                let badgeColor = "bg-amber-100 text-amber-800 border-amber-200";
+                if (lead.creditStatus === 'Aprobado') badgeColor = "bg-emerald-100 text-emerald-800 border-emerald-200";
+                if (lead.creditStatus === 'Requiere Inicial') badgeColor = "bg-blue-100 text-blue-800 border-blue-200";
+                if (lead.creditStatus === 'Rechazado') badgeColor = "bg-rose-100 text-rose-800 border-rose-200";
+
+                const card = document.createElement('div');
+                card.className = "bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm space-y-2 relative";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                        <span class="text-[10px] font-bold text-krediya-blue bg-blue-50 px-2 py-0.5 rounded-md">
+                            ${lead.zone}
+                        </span>
+                        <span class="text-[10px] font-bold border px-2 py-0.5 rounded-md ${badgeColor}">
+                            ${lead.creditStatus}
+                        </span>
+                    </div>
+
+                    <div class="pt-1">
+                        <h3 class="font-bold text-slate-800 text-sm">${lead.clientName}</h3>
+                        <p class="text-xs text-slate-500">Cédula: ${lead.clientCedula}</p>
+                        <p class="text-xs font-semibold text-slate-600 mt-1">
+                            <i class="fa-solid fa-box text-slate-400 mr-1"></i>${lead.productInterest}
+                        </p>
+                        ${lead.notes ? `<p class="text-xs text-slate-500 italic mt-1 bg-slate-50 p-2 rounded-lg border border-slate-100 font-normal">"${lead.notes}"</p>` : ''}
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 text-[10px] text-slate-400 border-t border-slate-100">
+                        <span><i class="fa-solid fa-user-tag mr-1"></i>${lead.promoterName}</span>
+                        <span>${lead.createdAt}</span>
+                    </div>
+
+                    <div class="flex items-center gap-1 pt-1">
+                        <a href="https://wa.me/507${lead.clientPhone.replace(/\D/g,'')}" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white text-[11px] font-bold py-1.5 rounded-lg text-center flex items-center justify-center gap-1">
+                            <i class="fa-brands fa-whatsapp text-xs"></i> WhatsApp
+                        </a>
+                        <button onclick="editLead('${lead.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-[11px] font-bold">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button onclick="deleteLead('${lead.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-1.5 rounded-lg text-[11px] font-bold">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
         }
 
-        // Dashboard Metrics Calculation
         function updateMetrics() {
             document.getElementById('metricTotal').innerText = leads.length;
-            
-            const pendingCount = leads.filter(l => l.creditStatus === 'Pendiente' || l.creditStatus === 'En Seguimiento' || l.creditStatus === 'Requiere Pie').length;
-            document.getElementById('metricPending').innerText = pendingCount;
-
-            const completedCount = leads.filter(l => l.creditStatus === 'Aprobado').length;
-            document.getElementById('metricCompleted').innerText = completedCount;
+            document.getElementById('metricPending').innerText = leads.filter(l => l.creditStatus === 'Pendiente').length;
+            document.getElementById('metricApproved').innerText = leads.filter(l => l.creditStatus === 'Aprobado').length;
         }
 
-        // Filter trigger
         function filterLeads() {
-            renderLeads();
+            const zone = document.getElementById('filterZone').value;
+            const status = document.getElementById('filterStatus').value;
+            const query = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = leads.filter(l => {
+                const matchZone = (zone === 'TODAS' || l.zone === zone);
+                const matchStatus = (status === 'TODOS' || l.creditStatus === status);
+                const matchQuery = l.clientName.toLowerCase().includes(query) || 
+                                   l.clientCedula.toLowerCase().includes(query) || 
+                                   l.promoterName.toLowerCase().includes(query);
+                return matchZone && matchStatus && matchQuery;
+            });
+
+            renderLeads(filtered);
         }
 
-        // Modal Control
-        function openFormModal(editId = null) {
-            const modal = document.getElementById('leadModal');
-            const form = document.getElementById('leadForm');
-            const title = document.getElementById('modalTitle');
-
-            form.reset();
-            document.getElementById('leadId').value = '';
-
-            if (editId) {
-                const lead = leads.find(l => l.id === editId);
-                if (lead) {
-                    title.innerText = 'Editar Cliente';
-                    document.getElementById('leadId').value = lead.id;
-                    document.getElementById('promoterName').value = lead.promoterName;
-                    document.getElementById('formZone').value = lead.zone;
-                    document.getElementById('customerName').value = lead.customerName;
-                    document.getElementById('customerPhone').value = lead.customerPhone;
-                    document.getElementById('productInterest').value = lead.productInterest;
-                    document.getElementById('creditStatus').value = lead.creditStatus;
-                    document.getElementById('notes').value = lead.notes || '';
-                }
-            } else {
-                title.innerText = 'Registrar Nuevo Cliente';
-                const currentZoneFilter = document.getElementById('zoneSelector').value;
-                if (currentZoneFilter !== 'TODAS') {
-                    document.getElementById('formZone').value = currentZoneFilter;
-                }
+        function openModal(isEdit = false) {
+            document.getElementById('leadModal').classList.remove('hidden');
+            if (!isEdit) {
+                document.getElementById('modalTitle').innerText = 'Capturar Nuevo Prospecto';
+                document.getElementById('leadForm').reset();
+                document.getElementById('leadId').value = '';
             }
-
-            modal.classList.remove('hidden');
         }
 
-        function closeFormModal() {
+        function closeModal() {
             document.getElementById('leadModal').classList.add('hidden');
         }
 
-        // Save Lead (Create / Update)
-        function saveLead(event) {
-            event.preventDefault();
-
+        function saveLead(e) {
+            e.preventDefault();
             const id = document.getElementById('leadId').value;
-            const promoterName = document.getElementById('promoterName').value.trim();
-            const zone = document.getElementById('formZone').value;
-            const customerName = document.getElementById('customerName').value.trim();
-            const customerPhone = document.getElementById('customerPhone').value.trim();
-            const productInterest = document.getElementById('productInterest').value;
-            const creditStatus = document.getElementById('creditStatus').value;
-            const notes = document.getElementById('notes').value.trim();
+            const newLead = {
+                id: id || Date.now().toString(),
+                promoterName: document.getElementById('promoterName').value,
+                zone: document.getElementById('zone').value,
+                clientName: document.getElementById('clientName').value,
+                clientCedula: document.getElementById('clientCedula').value,
+                clientPhone: document.getElementById('clientPhone').value,
+                productInterest: document.getElementById('productInterest').value,
+                creditStatus: document.getElementById('creditStatus').value,
+                notes: document.getElementById('notes').value,
+                createdAt: id ? leads.find(l => l.id === id).createdAt : new Date().toISOString().slice(0, 10)
+            };
 
             if (id) {
-                // Update existing
                 const index = leads.findIndex(l => l.id === id);
-                if (index !== -1) {
-                    leads[index] = {
-                        ...leads[index],
-                        promoterName,
-                        zone,
-                        customerName,
-                        customerPhone,
-                        productInterest,
-                        creditStatus,
-                        notes
-                    };
-                    showToast('Cliente actualizado correctamente');
-                }
+                leads[index] = newLead;
+                showToast('Lead actualizado correctamente');
             } else {
-                // Create new
-                const newLead = {
-                    id: Date.now().toString(),
-                    promoterName,
-                    zone,
-                    customerName,
-                    customerPhone,
-                    productInterest,
-                    creditStatus,
-                    notes,
-                    createdAt: new Date().toISOString().split('T')[0]
-                };
                 leads.unshift(newLead);
-                showToast('Nuevo cliente registrado con éxito');
+                showToast('Nuevo lead registrado');
             }
 
             saveToLocalStorage();
             renderLeads();
-            closeFormModal();
+            closeModal();
         }
 
-        // Edit Trigger
         function editLead(id) {
-            openFormModal(id);
-        }
-
-        // Delete Lead
-        function deleteLead(id) {
             const lead = leads.find(l => l.id === id);
             if (!lead) return;
 
-            if (confirm(`¿Estás seguro de eliminar el prospecto de "${lead.customerName}"?`)) {
+            document.getElementById('modalTitle').innerText = 'Editar Prospecto';
+            document.getElementById('leadId').value = lead.id;
+            document.getElementById('promoterName').value = lead.promoterName;
+            document.getElementById('zone').value = lead.zone;
+            document.getElementById('clientName').value = lead.clientName;
+            document.getElementById('clientCedula').value = lead.clientCedula;
+            document.getElementById('clientPhone').value = lead.clientPhone;
+            document.getElementById('productInterest').value = lead.productInterest;
+            document.getElementById('creditStatus').value = lead.creditStatus;
+            document.getElementById('notes').value = lead.notes;
+
+            openModal(true);
+        }
+
+        function deleteLead(id) {
+            if (confirm('¿Deseas eliminar este cliente de la lista?')) {
                 leads = leads.filter(l => l.id !== id);
                 saveToLocalStorage();
                 renderLeads();
-                showToast('Prospecto eliminado', 'delete');
+                showToast('Cliente eliminado');
             }
         }
 
-     // Funcionalidad de exportación a CSV
-function exportToCSV() {
-    if (leads.length === 0) {
-        showToast('No hay datos para exportar', 'warning');
-        return;
-    }
+        // --- EXPORTACIÓN OPTIMIZADA A EXCEL / CSV ---
+        function exportToCSV() {
+            if (leads.length === 0) {
+                showToast('No hay datos para exportar', 'warning');
+                return;
+            }
 
-    let csvContent = "\uFEFFsep=,\n";
-    const headers = ["ID", "Promotora", "Zona", "Cliente", "Teléfono", "Producto", "Estado Credito", "Notas", "Fecha Registro"];
-    
-    const rows = leads.map(l => [
-        `"${l.id}"`,
-        `"${(l.promoterName || '').replace(/"/g, '""')}"`,
-        `"${l.zone}"`,
-        `"${(l.clientName || '').replace(/"/g, '""')}"`,
-        `"${l.clientPhone}"`,
-        `"${l.productInterest}"`,
-        `"${l.creditStatus}"`,
-        `"${(l.notes || '').replace(/"/g, '""')}"`,
-        `"${l.createdAt || ''}"`
-    ]);
+            // Marca UTF-8 e instrucción de delimitador de columnas para Excel
+            let csvContent = "\uFEFFsep=,\n";
 
-    csvContent += headers.join(",") + "\n";
-    rows.forEach(rowArray => {
-        csvContent += rowArray.join(",") + "\n";
-    });
+            // Encabezados de columnas ordenadas
+            const headers = ["ID", "Promotora", "Zona", "Cliente", "Cédula", "Teléfono", "Producto", "Estado Crédito", "Notas", "Fecha Registro"];
+            csvContent += headers.join(",") + "\n";
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    const url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", `Leads_KrediYA_${new Date().toISOString().slice(0,10)}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-            showToast('Archivo CSV descargado correctamente');
+            // Mapeo de filas limpias
+            leads.forEach(l => {
+                const row = [
+                    l.id,
+                    `"${(l.promoterName || '').replace(/"/g, '""')}"`,
+                    `"${l.zone}"`,
+                    `"${(l.clientName || '').replace(/"/g, '""')}"`,
+                    `"${l.clientCedula}"`,
+                    `"${l.clientPhone}"`,
+                    `"${l.productInterest}"`,
+                    `"${l.creditStatus}"`,
+                    `"${(l.notes || '').replace(/"/g, '""')}"`,
+                    `"${l.createdAt || ''}"`
+                ];
+                csvContent += row.join(",") + "\n";
+            });
+
+            // Creación y descarga automática del archivo CSV/Excel
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Leads_KrediYA_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Base de datos exportada para Excel');
         }
 
-        // Utility: Toast Notifications
-        function showToast(message, type = 'success') {
+        function showToast(message) {
             const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-
-            toastMessage.innerText = message;
-
-            if (type === 'delete' || type === 'warning') {
-                toastIcon.className = 'fa-solid fa-circle-exclamation text-amber-400 text-lg';
-            } else {
-                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-lg';
-            }
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
+            toast.innerText = message;
+            toast.classList.remove('hidden');
             setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.add('hidden');
             }, 3000);
-        }
-
-        // Escape HTML Helper
-        function escapeHTML(str) {
-            return str ? str.replace(/[&<>'"]/g, 
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            ) : '';
         }
     </script>
 </body>
