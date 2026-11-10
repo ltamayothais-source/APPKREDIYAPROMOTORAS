@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KrediYA - Seguimiento de Clientes</title>
+    <title>KrediYA Panamá - Seguimiento de Clientes</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         krediya: {
-                            red: '#E51B24',
-                            darkRed: '#C2131B',
-                            lightRed: '#FEE2E2',
-                            gray: '#F8FAFC',
-                            dark: '#1E293B'
+                            blue: '#0052CC',
+                            darkBlue: '#003D99',
+                            lightBlue: '#E6F0FF',
+                            red: '#FF0055',
+                            darkRed: '#D60047',
+                            lightRed: '#FFE6ED',
+                            bg: '#F8FAFC',
+                            slate: '#0F172A'
                         }
                     },
                     fontFamily: {
@@ -33,7 +36,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
+            background-color: #F8FAFC;
         }
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -44,41 +47,52 @@
         }
     </style>
 </head>
-<body class="bg-white text-slate-800 min-h-screen flex flex-col pb-12">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col pb-12">
 
-    <!-- HEADER / BRANDING -->
-    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm px-4 py-3">
+    <!-- HEADER / BRANDING OFICIAL -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm px-4 py-3.5">
         <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <!-- LOGO OFICIAL SVG KREDIYA PANAMA -->
             <div class="flex items-center space-x-3">
-                <!-- Logo KrediYA Badge -->
-                <div class="bg-krediya-red text-white font-extrabold px-3 py-1.5 rounded-xl text-xl tracking-wider shadow-sm flex items-center justify-center">
-                    Kredi<span class="text-yellow-300">YA</span>
+                <div class="flex flex-col items-start select-none">
+                    <svg width="155" height="42" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto">
+                        <!-- Panamá Subtitle -->
+                        <text x="5" y="16" fill="#0052CC" font-family="'Inter', sans-serif" font-size="15" font-weight="700" letter-spacing="-0.3">Panamá</text>
+                        <!-- Kredi -->
+                        <text x="2" y="52" fill="#0052CC" font-family="'Inter', sans-serif" font-size="44" font-weight="800" letter-spacing="-1">Kredi</text>
+                        <!-- YA -->
+                        <text x="122" y="52" fill="#FF0055" font-family="'Inter', sans-serif" font-size="46" font-weight="900" letter-spacing="-1">Y</text>
+                        <!-- Custom Stylized 'A' with Swoosh -->
+                        <path d="M 172 52 L 186 16 L 200 52 L 189 52 L 186 43 L 176 43 L 172 52 Z M 181 28 L 178 36 L 184 36 Z" fill="#FF0055" />
+                        <!-- Swoosh/Spark on A -->
+                        <path d="M 165 37 C 175 33, 195 31, 212 28 C 198 33, 180 37, 165 37 Z" fill="#FF0055" />
+                    </svg>
                 </div>
-                <div>
-                    <h1 class="text-xs font-bold text-slate-400 uppercase tracking-wider leading-none">Promotoras</h1>
-                    <p class="text-sm font-semibold text-slate-700">Seguimiento de Clientes</p>
+                <div class="hidden sm:block border-l border-slate-200 pl-3">
+                    <h1 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-none">Gestión Promotoras</h1>
+                    <p class="text-xs font-semibold text-slate-700 mt-0.5">Seguimiento de Clientes</p>
                 </div>
             </div>
             
-            <!-- Quick Action Info / Notification Icon -->
-            <button onclick="exportToCSV()" title="Exportar CSV" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-xl transition-all flex items-center text-xs font-semibold space-x-1.5">
-                <i class="fa-solid fa-file-excel text-emerald-600 text-base"></i>
-                <span class="hidden sm:inline">Exportar</span>
+            <!-- Quick Action Info / Export CSV -->
+            <button onclick="exportToCSV()" title="Exportar reporte CSV" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-xl transition-all flex items-center text-xs font-semibold space-x-2 active:scale-95">
+                <i class="fa-solid fa-file-csv text-emerald-600 text-base"></i>
+                <span class="hidden sm:inline font-bold">Exportar CSV</span>
             </button>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-3xl mx-auto px-4 pt-4 w-full flex-1">
+    <main class="max-w-3xl mx-auto px-4 pt-5 w-full flex-1">
 
-        <!-- ZONE SELECTOR & PROMOTER BAR -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 mb-5 shadow-sm">
+        <!-- ZONA & ESTADO FILTERS CARD -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-4 mb-5 shadow-sm">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                    <label for="zoneSelector" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+                    <label for="zoneSelector" class="block text-[11px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">
                         <i class="fa-solid fa-location-dot text-krediya-red mr-1"></i> Zona de Cobertura
                     </label>
-                    <select id="zoneSelector" onchange="filterLeads()" class="w-full bg-white border border-slate-300 text-slate-800 font-semibold rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <select id="zoneSelector" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 text-slate-800 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all cursor-pointer">
                         <option value="TODAS">TODAS LAS ZONAS</option>
                         <option value="CHITRE">CHITRÉ</option>
                         <option value="SANTIAGO">SANTIAGO</option>
@@ -88,14 +102,14 @@
                     </select>
                 </div>
                 <div>
-                    <label for="statusFilter" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
-                        <i class="fa-solid fa-filter text-slate-500 mr-1"></i> Estado
+                    <label for="statusFilter" class="block text-[11px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">
+                        <i class="fa-solid fa-filter text-krediya-blue mr-1"></i> Estado del Crédito
                     </label>
-                    <select id="statusFilter" onchange="filterLeads()" class="w-full bg-white border border-slate-300 text-slate-800 font-semibold rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <select id="statusFilter" onchange="filterLeads()" class="w-full bg-slate-50 border border-slate-200 text-slate-800 font-bold rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all cursor-pointer">
                         <option value="TODOS">TODOS LOS ESTADOS</option>
-                        <option value="Pendiente">PENDIENTE</option>
+                        <option value="Pendiente">PENDIENTE DE DOCUMENTOS</option>
                         <option value="En Seguimiento">EN SEGUIMIENTO</option>
-                        <option value="Requiere Pie">REQUIERE ABONO INICIAL / ABONO</option>
+                        <option value="Requiere Pie">REQUIERE INICIAL / PIE</option>
                         <option value="Aprobado">APROBADO / COMPLETADO</option>
                         <option value="Rechazado">RECHAZADO</option>
                     </select>
@@ -105,49 +119,51 @@
 
         <!-- DASHBOARD METRICS -->
         <div class="grid grid-cols-3 gap-3 mb-6">
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-center shadow-sm">
-                <span class="block text-2xl font-black text-slate-800" id="metricTotal">0</span>
-                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tight">Total Leads</span>
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-3.5 text-center shadow-sm">
+                <span class="block text-2xl sm:text-3xl font-black text-krediya-blue" id="metricTotal">0</span>
+                <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-tight">Total Leads</span>
             </div>
-            <div class="bg-amber-50 border border-amber-200/60 rounded-2xl p-3 text-center shadow-sm">
-                <span class="block text-2xl font-black text-amber-600" id="metricPending">0</span>
-                <span class="text-[11px] font-bold text-amber-600/80 uppercase tracking-tight">Pendientes</span>
+            <div class="bg-amber-50/70 border border-amber-200/70 rounded-2xl p-3.5 text-center shadow-sm">
+                <span class="block text-2xl sm:text-3xl font-black text-amber-600" id="metricPending">0</span>
+                <span class="text-[10px] sm:text-[11px] font-bold text-amber-700/80 uppercase tracking-tight">Pendientes</span>
             </div>
-            <div class="bg-emerald-50 border border-emerald-200/60 rounded-2xl p-3 text-center shadow-sm">
-                <span class="block text-2xl font-black text-emerald-600" id="metricCompleted">0</span>
-                <span class="text-[11px] font-bold text-emerald-600/80 uppercase tracking-tight">Aprobados</span>
+            <div class="bg-emerald-50/70 border border-emerald-200/70 rounded-2xl p-3.5 text-center shadow-sm">
+                <span class="block text-2xl sm:text-3xl font-black text-emerald-600" id="metricCompleted">0</span>
+                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700/80 uppercase tracking-tight">Aprobados</span>
             </div>
         </div>
 
-        <!-- ACTION BUTTON / TOGGLE FORM -->
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-lg font-bold text-slate-800 flex items-center">
-                <i class="fa-solid fa-users text-krediya-red mr-2"></i> Prospectos Capturados
-            </h2>
-            <button onclick="openFormModal()" class="bg-krediya-red hover:bg-krediya-darkRed text-white px-4 py-2 rounded-xl font-bold text-sm shadow-md transition-all flex items-center space-x-1.5 active:scale-95">
+        <!-- ACTION BAR -->
+        <div class="flex justify-between items-center mb-3.5">
+            <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center">
+                    <i class="fa-solid fa-users text-krediya-blue mr-2"></i> Prospectos Capturados
+                </h2>
+            </div>
+            <button onclick="openFormModal()" class="bg-krediya-red hover:bg-krediya-darkRed text-white px-4 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center space-x-2 active:scale-95">
                 <i class="fa-solid fa-user-plus text-xs"></i>
                 <span>Nuevo Cliente</span>
             </button>
         </div>
 
-        <!-- SEARCH BAR -->
+        <!-- SEARCH INPUT -->
         <div class="relative mb-4">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
-            <input type="text" id="searchInput" onkeyup="filterLeads()" placeholder="Buscar por cliente, teléfono o promotora..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+            <input type="text" id="searchInput" onkeyup="filterLeads()" placeholder="Buscar por cliente, teléfono o promotora..." class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all shadow-sm">
         </div>
 
-        <!-- LEADS CARDS LIST -->
-        <div id="leadsListContainer" class="space-y-3">
-            <!-- Dynamic Content -->
+        <!-- LEADS CARDS LIST CONTAINER -->
+        <div id="leadsListContainer" class="space-y-3.5">
+            <!-- Dynamic Content generated by JS -->
         </div>
 
         <!-- EMPTY STATE -->
-        <div id="emptyState" class="hidden text-center py-12 px-4 bg-slate-50 border border-dashed border-slate-200 rounded-2xl mt-4">
-            <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+        <div id="emptyState" class="hidden text-center py-12 px-4 bg-white border border-dashed border-slate-200 rounded-2xl mt-4 shadow-sm">
+            <div class="w-14 h-14 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
                 <i class="fa-solid fa-address-book"></i>
             </div>
-            <h3 class="text-slate-700 font-bold text-base">No hay clientes registrados</h3>
-            <p class="text-slate-400 text-xs mt-1 max-w-xs mx-auto">Haz clic en "Nuevo Cliente" para agregar una nueva solicitud de crédito.</p>
+            <h3 class="text-slate-800 font-bold text-base">No hay clientes registrados</h3>
+            <p class="text-slate-400 text-xs mt-1 max-w-xs mx-auto">Haz clic en el botón "Nuevo Cliente" para añadir una nueva solicitud.</p>
         </div>
 
     </main>
@@ -159,8 +175,8 @@
             <!-- Modal Header -->
             <div class="flex justify-between items-center pb-4 border-b border-slate-100 mb-4">
                 <div>
-                    <h3 id="modalTitle" class="text-lg font-bold text-slate-800">Registrar Nuevo Cliente</h3>
-                    <p class="text-xs text-slate-400">Ingresa los datos del prospecto para el seguimiento.</p>
+                    <h3 id="modalTitle" class="text-lg font-bold text-slate-900">Registrar Nuevo Cliente</h3>
+                    <p class="text-xs text-slate-500">Ingresa la información del prospecto para el seguimiento de venta.</p>
                 </div>
                 <button onclick="closeFormModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -173,14 +189,14 @@
 
                 <!-- Promotora / ID -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Nombre / ID Promotora *</label>
-                    <input type="text" id="promoterName" required placeholder="Ej. Maria Gómez (ID 402)" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre / ID Promotora *</label>
+                    <input type="text" id="promoterName" required placeholder="Ej. Maria Gómez (ID 402)" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                 </div>
 
                 <!-- Zona de Gestión -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Zona asignada *</label>
-                    <select id="formZone" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Zona Asignada *</label>
+                    <select id="formZone" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                         <option value="CHITRE">CHITRÉ</option>
                         <option value="SANTIAGO">SANTIAGO</option>
                         <option value="CHIRIQUI">CHIRIQUÍ</option>
@@ -191,26 +207,26 @@
 
                 <!-- Nombre Cliente -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Nombre Completo del Cliente *</label>
-                    <input type="text" id="customerName" required placeholder="Ej. Carlos Eduardo Rodríguez" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo del Cliente *</label>
+                    <input type="text" id="customerName" required placeholder="Ej. Carlos Eduardo Rodríguez" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                 </div>
 
                 <!-- Teléfono (WhatsApp) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Teléfono (WhatsApp) *</label>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono (WhatsApp) *</label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm font-semibold">+507</span>
-                        <input type="tel" id="customerPhone" required placeholder="6000-0000" class="w-full border border-slate-300 rounded-xl pl-16 pr-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                        <input type="tel" id="customerPhone" required placeholder="6000-0000" class="w-full border border-slate-300 rounded-xl pl-16 pr-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                     </div>
                 </div>
 
                 <!-- Producto de Interés -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Producto de Interés *</label>
-                    <select id="productInterest" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Producto de Interés *</label>
+                    <select id="productInterest" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                         <option value="Celular / Smartphone">Smartphone / Celular</option>
                         <option value="Electródoméstico / TV">Electrodoméstico / TV</option>
-                        <option value="Moto / Movilidad">Moto / Linea Blanca</option>
+                        <option value="Moto / Movilidad">Moto / Movilidad</option>
                         <option value="Préstamo Personal">Préstamo Personal</option>
                         <option value="Otro Producto">Otro Producto</option>
                     </select>
@@ -218,11 +234,11 @@
 
                 <!-- Estado del Crédito -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Estado de la Solicitud *</label>
-                    <select id="creditStatus" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Estado de la Solicitud *</label>
+                    <select id="creditStatus" required class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all">
                         <option value="Pendiente">Pendiente de Documentos</option>
                         <option value="En Seguimiento">En Seguimiento</option>
-                        <option value="Requiere Abono">Requiere Abono / Pie Inicial</option>
+                        <option value="Requiere Pie">Requiere Inicial / Pie</option>
                         <option value="Aprobado">Aprobado / Completado</option>
                         <option value="Rechazado">Rechazado</option>
                     </select>
@@ -230,8 +246,8 @@
 
                 <!-- Notas Adicionales -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Observaciones / Notas</label>
-                    <textarea id="notes" rows="2" placeholder="Detalles de contacto, fecha límite o comentarios adicionales..." class="w-full border border-slate-300 rounded-xl px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-red transition-all"></textarea>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Observaciones / Notas</label>
+                    <textarea id="notes" rows="2" placeholder="Detalles de contacto, fecha de cita o comentarios..." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-krediya-blue transition-all"></textarea>
                 </div>
 
                 <!-- Submit Buttons -->
@@ -239,7 +255,7 @@
                     <button type="button" onclick="closeFormModal()" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl text-sm transition-all">
                         Cancelar
                     </button>
-                    <button type="submit" class="w-1/2 bg-krediya-red hover:bg-krediya-darkRed text-white font-bold py-3 rounded-xl text-sm shadow-md transition-all">
+                    <button type="submit" class="w-1/2 bg-krediya-blue hover:bg-krediya-darkBlue text-white font-bold py-3 rounded-xl text-sm shadow-md transition-all">
                         Guardar Cliente
                     </button>
                 </div>
@@ -257,7 +273,7 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // Storage Key
-        const STORAGE_KEY = 'krediya_promoter_leads_v1';
+        const STORAGE_KEY = 'krediya_promoter_leads_v2';
 
         // Initial Seed Data if empty
         const initialSeedLeads = [
@@ -361,24 +377,24 @@
             container.innerHTML = filtered.map(lead => {
                 const statusBadge = getStatusBadgeHTML(lead.creditStatus);
                 const cleanPhone = lead.customerPhone.replace(/\D/g, '');
-                const waMessage = encodeURIComponent(`Hola ${lead.customerName}, le saludamos de KrediYA sobre su solicitud de ${lead.productInterest}.`);
+                const waMessage = encodeURIComponent(`Hola ${lead.customerName}, le saludamos de KrediYA Panamá respecto a su solicitud de ${lead.productInterest}.`);
                 const waURL = `https://wa.me/507${cleanPhone}?text=${waMessage}`;
 
                 return `
-                    <div class="bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-4 shadow-sm transition-all duration-200 relative">
+                    <div class="bg-white border border-slate-200/90 hover:border-slate-300 rounded-2xl p-4 shadow-sm transition-all duration-200 relative">
                         <!-- Top Row: Zone & Status -->
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="inline-flex items-center text-[10px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg">
-                                <i class="fa-solid fa-location-dot text-krediya-red mr-1"></i> ${lead.zone}
+                        <div class="flex justify-between items-start mb-2.5">
+                            <span class="inline-flex items-center text-[10px] font-black uppercase tracking-wider bg-krediya-lightBlue text-krediya-blue px-2.5 py-1 rounded-lg">
+                                <i class="fa-solid fa-location-dot text-krediya-red mr-1.5"></i> ${lead.zone}
                             </span>
                             ${statusBadge}
                         </div>
 
                         <!-- Customer Details -->
                         <div class="mb-3">
-                            <h3 class="text-base font-bold text-slate-800 leading-snug">${escapeHTML(lead.customerName)}</h3>
-                            <p class="text-xs text-slate-500 font-medium mt-0.5">
-                                <i class="fa-solid fa-box text-slate-400 mr-1"></i> ${escapeHTML(lead.productInterest)}
+                            <h3 class="text-base font-bold text-slate-900 leading-snug">${escapeHTML(lead.customerName)}</h3>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5 flex items-center">
+                                <i class="fa-solid fa-box text-slate-400 mr-1.5 text-xs"></i> ${escapeHTML(lead.productInterest)}
                             </p>
                         </div>
 
@@ -391,13 +407,13 @@
 
                         <!-- Promoter & Date info -->
                         <div class="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100 mb-3">
-                            <span><i class="fa-solid fa-user-tag mr-1"></i> ${escapeHTML(lead.promoterName)}</span>
+                            <span><i class="fa-solid fa-user-tag mr-1 text-slate-400"></i> ${escapeHTML(lead.promoterName)}</span>
                             <span>${lead.createdAt || 'Reciente'}</span>
                         </div>
 
                         <!-- Actions Bar -->
                         <div class="grid grid-cols-3 gap-2">
-                            <a href="${waURL}" target="_blank" class="col-span-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1 transition-all">
+                            <a href="${waURL}" target="_blank" class="col-span-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1.5 transition-all shadow-sm">
                                 <i class="fa-brands fa-whatsapp text-sm"></i>
                                 <span>WhatsApp</span>
                             </a>
@@ -405,8 +421,8 @@
                                 <i class="fa-solid fa-pen-to-square text-slate-500"></i>
                                 <span>Editar</span>
                             </button>
-                            <button onclick="deleteLead('${lead.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1 transition-all">
-                                <i class="fa-solid fa-trash-can"></i>
+                            <button onclick="deleteLead('${lead.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl py-2 px-2 text-xs font-bold flex items-center justify-center space-x-1 transition-all">
+                                <i class="fa-solid fa-trash-can text-rose-500"></i>
                                 <span>Borrar</span>
                             </button>
                         </div>
@@ -419,15 +435,15 @@
         function getStatusBadgeHTML(status) {
             switch (status) {
                 case 'Pendiente':
-                    return `<span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-clock mr-1"></i>Pendiente</span>`;
+                    return `<span class="bg-amber-100/80 text-amber-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-200/50"><i class="fa-solid fa-clock mr-1"></i>Pendiente</span>`;
                 case 'En Seguimiento':
-                    return `<span class="bg-blue-100 text-blue-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-arrows-rotate mr-1"></i>En Seguimiento</span>`;
+                    return `<span class="bg-blue-100/80 text-blue-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-blue-200/50"><i class="fa-solid fa-arrows-rotate mr-1"></i>En Seguimiento</span>`;
                 case 'Requiere Pie':
-                    return `<span class="bg-purple-100 text-purple-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-hand-holding-dollar mr-1"></i>Requiere Pie</span>`;
+                    return `<span class="bg-purple-100/80 text-purple-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-purple-200/50"><i class="fa-solid fa-hand-holding-dollar mr-1"></i>Requiere Inicial</span>`;
                 case 'Aprobado':
-                    return `<span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-circle-check mr-1"></i>Aprobado</span>`;
+                    return `<span class="bg-emerald-100/80 text-emerald-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-200/50"><i class="fa-solid fa-circle-check mr-1"></i>Aprobado</span>`;
                 case 'Rechazado':
-                    return `<span class="bg-rose-100 text-rose-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-circle-xmark mr-1"></i>Rechazado</span>`;
+                    return `<span class="bg-rose-100/80 text-rose-900 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-rose-200/50"><i class="fa-solid fa-circle-xmark mr-1"></i>Rechazado</span>`;
                 default:
                     return `<span class="bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${status}</span>`;
             }
@@ -473,7 +489,6 @@
                 }
             } else {
                 title.innerText = 'Registrar Nuevo Cliente';
-                // Pre-select current zone filter if set
                 const currentZoneFilter = document.getElementById('zoneSelector').value;
                 if (currentZoneFilter !== 'TODAS') {
                     document.getElementById('formZone').value = currentZoneFilter;
@@ -548,7 +563,6 @@
             const lead = leads.find(l => l.id === id);
             if (!lead) return;
 
-            // Custom UI confirmation substitute
             if (confirm(`¿Estás seguro de eliminar el prospecto de "${lead.customerName}"?`)) {
                 leads = leads.filter(l => l.id !== id);
                 saveToLocalStorage();
