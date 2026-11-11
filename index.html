@@ -44,16 +44,15 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen pb-12">
 
-    <!-- Header Principal con Logo Oficial -->
+    <!-- Header Principal con Logo Oficial Panamá KrediYA (Sin Z) -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
         <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logotipo SVG KrediYA Panamá -->
+            <!-- Logotipo SVG KrediYA Panamá Corregido -->
             <div class="flex items-center space-x-2">
-                <svg class="h-9 w-auto" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="10" y="22" font-family="'Inter', sans-serif" font-weight="600" font-size="18" fill="#0052CC">Panamá</text>
-                    <text x="10" y="60" font-family="'Inter', sans-serif" font-weight="800" font-size="40" fill="#0052CC">Kredi</text>
-                    <text x="118" y="60" font-family="'Inter', sans-serif" font-weight="800" font-size="40" fill="#FF0055">YA</text>
-                    <path d="M185 22 L205 22 L175 60 L195 60" stroke="#FF0055" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg class="h-9 w-auto" viewBox="0 0 180 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="5" y="18" font-family="'Inter', sans-serif" font-weight="600" font-size="16" fill="#0052CC">Panamá</text>
+                    <text x="5" y="58" font-family="'Inter', sans-serif" font-weight="800" font-size="38" fill="#0052CC">Kredi</text>
+                    <text x="110" y="58" font-family="'Inter', sans-serif" font-weight="800" font-size="38" fill="#FF0055">YA</text>
                 </svg>
             </div>
             
@@ -151,7 +150,7 @@
 
     <!-- Modal Formulario Agregar / Editar Cliente -->
     <div id="leadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
             <div class="bg-krediya-blue p-4 text-white flex justify-between items-center">
                 <h3 id="modalTitle" class="font-bold text-sm flex items-center gap-2">
                     <i class="fa-solid fa-user-plus"></i> Capturar Nuevo Prospecto
@@ -277,7 +276,6 @@
 
         let leads = [];
 
-        // Inicialización de la aplicación
         document.addEventListener('DOMContentLoaded', () => {
             const stored = localStorage.getItem('krediya_leads_db');
             if (stored) {
@@ -453,21 +451,17 @@
             }
         }
 
-        // --- EXPORTACIÓN OPTIMIZADA A EXCEL / CSV ---
+        // --- EXPORTACIÓN A CSV PARA EXCEL AUTOMÁTICO ---
         function exportToCSV() {
             if (leads.length === 0) {
                 showToast('No hay datos para exportar', 'warning');
                 return;
             }
 
-            // Marca UTF-8 e instrucción de delimitador de columnas para Excel
             let csvContent = "\uFEFFsep=,\n";
-
-            // Encabezados de columnas ordenadas
             const headers = ["ID", "Promotora", "Zona", "Cliente", "Cédula", "Teléfono", "Producto", "Estado Crédito", "Notas", "Fecha Registro"];
             csvContent += headers.join(",") + "\n";
 
-            // Mapeo de filas limpias
             leads.forEach(l => {
                 const row = [
                     l.id,
@@ -484,7 +478,6 @@
                 csvContent += row.join(",") + "\n";
             });
 
-            // Creación y descarga automática del archivo CSV/Excel
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             const url = URL.createObjectURL(blob);
